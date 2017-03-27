@@ -1,0 +1,65 @@
+import java.util.*;
+class caseStudy
+{
+public static void main(String args[])
+{
+Scanner r=new Scanner(System.in);
+caseStudy d=new caseStudy();
+System.out.println("enter the sentences");
+String s=r.nextLine();
+StringTokenizer str=new StringTokenizer(s,".?!");
+int count=str.countTokens();
+if(count > 10)
+{
+System.out.println(" above 10 sentences are not allowed");
+}
+else
+{
+String[] p=new String[count];
+int[] pno=new int[count];
+for(int i=0;i<count;i++)
+{
+p[i]=str.nextToken().trim();
+pno[i]=d.noOfWords(p[i]);
+}
+d.arrange(p,pno);
+}
+}
+int noOfWords(String s)
+{
+StringTokenizer str=new StringTokenizer(s," .,?!");
+int n=str.countTokens();
+return n;
+}
+void arrange(String a[],int b[])
+{
+int t1=0;
+int n=a.length;
+for(int i=0;i<n-1;i++)
+{
+for(int j=i+1;j<n;j++)
+{
+if(b[i]>b[j])
+{
+
+t1=b[i];
+b[i]=b[j];
+b[j]=t1;
+String t2=" "; 
+t2=a[i];
+a[i]=a[j];
+a[j]=t2;
+}
+}
+}
+result(a,b);
+}
+void result(String a[],int b[])
+{
+int n=a.length;
+for(int i=0;i<n;i++)
+{
+System.out.println(" "+ a[i] + "\t=\t"+ b[i]);
+}
+}
+}
